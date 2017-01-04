@@ -25,8 +25,7 @@ SECRET_KEY = 'zttt4$78pwp)=30-zso1xabp1tu+$#@)o7^*ygev@w&(okff^z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
-#'https://middpreregistration.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', 'middpreregistration.herokuapp.com']
 
 
 # Application definition
