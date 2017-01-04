@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load account %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% user_display user as user_display %}
+<p><strong>{% trans "Note" %}:</strong> {% blocktrans %}you are already logged in as {{ user_display }}.{% endblocktrans %}</p>

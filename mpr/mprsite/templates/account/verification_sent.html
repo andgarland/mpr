@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+	<div class="form">
+    	<h2>An E-mail Has Been Sent!</h2>
+    	<p></p>
+
+    	<p>{% blocktrans %}Please follow the link provided to verify your e-mail address and finalize the signup process. Contact us if you do not receive an e-mail within a few minutes.{% endblocktrans %}</p>
+    </div>
+{% endblock %}

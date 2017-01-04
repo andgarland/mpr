@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% block content %}
+
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="searchbar" class="form row">
+                <form method="GET">
+                    <h2>Search courses:</h2>
+                    <p class="message">Example Searches: '20022', 'CSCI 0101 A', 'Introduction to Computing'</p>
+                    <input type="text" name="search"><p></p>
+                    <button type="submit" value="Submit">Search</button>
+                </form>
+            </div>
+
+            <div id="mycourses" class="form row">
+                <h2>Your Courses</h2>
+                <p></p>
+                {% ifnotequal t_one '' %}
+                    <p>1) <a href="/courses/{{ t_one }}/">{{t_one}}</a></p>
+                {% else %}
+                    <p>1)</p>
+                {% endifnotequal %}
+                {% ifnotequal t_two '' %}
+                    <p>2) <a href="/courses/{{ t_two }}/">{{t_two}}</a></p>
+                {% else %}
+                    <p>2)</p>
+                {% endifnotequal %}
+                {% ifnotequal t_three '' %}
+                    <p>3) <a href="/courses/{{ t_three }}/">{{t_three}}</a></p>
+                {% else %}
+                    <p>3)</p>
+                {% endifnotequal %}
+                {% ifnotequal t_four '' %}
+                    <p>4) <a href="/courses/{{ t_four }}/">{{t_four}}</a></p>
+                {% else %}
+                    <p>4)</p>
+                {% endifnotequal %}
+            </div>
+        </div>  
+
+        <div class="col-md-8">
+            {% if search_results %}
+                <div id="searchresults" class="form row">
+                    {% for result in search_results %}
+                        <p><a href="/courses/{{ result.course_number }}/">{{ result.course_number }}: {{result.course_title}}</a><p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

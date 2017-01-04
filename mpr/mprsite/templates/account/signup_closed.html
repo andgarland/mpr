@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Up Closed" %}{% endblock %}
+
+{% block content %}
+<div class="form">
+<h2>Change Password</h2>
+<p></p>
+
+<p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+</div>
+{% endblock %}

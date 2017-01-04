@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+</head>
+<body>
+
+<header id="top">
+
+    <div class="container">
+    
+        <div class="row">
+        
+            <div class="col-lg-8 site-title main-menu">
+                <a id="MPR" class="nav-link" href="/accounts/login">
+                    <h1>Middlebury Preregistration</h1>
+                </a>
+            </div>
+            
+            <div class="col-lg-4 main-menu">
+                
+                <nav class="navbar navbar-light">
+                  <ul class="nav navbar-nav single-page-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/accounts/login/" id="SignInOut">Sign In</a>
+                    </li>
+                  </ul>
+                </nav>
+              
+            </div>
+            
+        
+            <div class="col-md-12" id="hereA">
+                <hr class="sigma-hr">
+            </div>
+        </div>
+
+    </div>
+    
+</header>
+
+{% block body %}
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+{% block extra_body %}
+{% endblock %}
+</body>
+</html>

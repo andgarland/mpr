@@ -1,0 +1,11 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}{{ user_display }},
+
+Thank you for registering with {{site_name}}! To confirm your account, please follow the link provided below.
+
+{{ activate_url }}
+
+The link will expire in 7 days, so if you are receiving this email and did not register for {{site_name}}, simply do not click the link and your e-mail will then not be tied to any account.
+
+{% endblocktrans %}{% endautoescape %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from {{ site_name }}!
+{% endblocktrans %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% load mprsite_extras %}
+
+{% block content %}
+
+{% if course|to_class_name == 'CurrentCourse' %}
+
+<div class="container">
+  <div class="row">  
+    <div class="form col-md-4" id="courseinfo">
+      <h2>{{ course.course_number }}</h2>
+      <p class="title">{{course.course_title}}</p>
+      <p></p>
+      <p>Term: {{course.term}} {{course.year}}</p>
+      <p>Professor: {{ course.professor }}</p>
+      <p>Times: {{course.days_one}} {{course.start_time_one}}-{{course.end_time_one}}{% if course.days_two %}, {course.days_two}} {{course.start_time_two}} - {{course.end_time_two}}{%endif%}</p>
+      <p>Location(s): {{course.location_one}}{% if course.location_two %}, {{course.location_two}}{%endif%}</p>
+      <p>CRN: {{ course.crn }}</p>
+      <p class="currEn">Current Enrollment: {{course.filled_num_seats}} / {{course.max_num_seats}}</p>
+      
+      {% if not interest %}
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="Place Token" value="Mark as interested">Add to Your Courses</button>
+      </form>
+      {% else %}
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="Remove Token" value="Remove interest">Remove from Your Courses</button>
+      </form>
+      {% endif %}
+    </div>
+
+    <div class="form col-md-4" id="currentinfo">
+      <h2>Current Interest:</h2>
+      <p></p>
+      <h1 class="seating">{{ course.num_tokens }} / {{ course.max_num_seats }} seats</h1>
+      <p></p>
+      <p></p>
+      <p>Breakdown:</p>
+      <ul>
+        <li>{{ course.num_super_senior_febs }} super-senior febs</li>
+        <li>{{ course.num_seniors }} seniors</li>
+        <li>{{ course.num_senior_febs }} senior febs</li>
+        <li>{{ course.num_juniors }} juniors</li>
+        <li>{{ course.num_junior_febs }} junior febs</li>
+        <li>{{ course.num_sophomores }} sophomores</li>
+        <li>{{ course.num_sophomore_febs }} sophomore febs</li>
+        <li>{{ course.num_freshmen }} freshmen</li>
+        <li>{{ course.num_freshman_febs }} freshman febs</li>
+      </ul>
+
+    </div>
+
+    <div class="form col-md-3" id="pastinfo">
+      <h2>Past Data</h2>
+      <p></p>
+      {% if avg_enroll > 0 %}
+      <p class="title">historical average (10yrs):</p>
+      <p>-{{avg_enroll}} / {{avg_capac}}</p>
+      {% endif %}
+      <p class="title">with this professor:</p>
+      {% for past in prof_list%}
+        <p>-{{past.term}} {{past.year}}: {{ past.filled_num_seats }} / {{ past.max_num_seats }}</p>
+      {% endfor %}
+      <p class="title">in recent years:</p>
+      {% for past in recent_list %}
+        <p>-{{past.term}} {{past.year}}: {{ past.filled_num_seats }} / {{ past.max_num_seats }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% else %}
+    <p>This course is not being offered in an upcoming semester.</p>
+{% endif %}
+
+{% endblock content %}

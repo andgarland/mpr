@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/sitestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mprsite/css/pre.css' %}" />
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+
+  <div class="form">
+    <form class="login-form" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="primaryAction" type="submit">Sign In</button>
+      <p class="message">Forgot your password? <a href="{% url 'account_reset_password' %}">Reset it</a></p>
+      <p class="message">Not registered? <a href="{{signup_url}}">Create an account</a></p>
+    </form>
+
+  </div>
+
+{% endblock %}
