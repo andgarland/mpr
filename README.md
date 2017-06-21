@@ -2,4 +2,4 @@
 
 http://middpreregistration.herokuapp.com/
 
-Python/Django/HMTL/CSS
+Python/Django/HTML/CSS
